@@ -31,7 +31,7 @@
   
   <!-- Tool properties -->
   <xacro:property name="tool_mass" value="0.200" />
-  <xacro:property name="tool_joint_offset" value="0.00 0.00 0.00" />
+  <xacro:property name="tool_joint_offset" value="0.00 0.00 0.10" />
   <xacro:property name="tool_link_offset" value="0.00 0.00 0.1275" />
   
   <!--  Here we define a dummy joint between the tip of the iiwa7 and the base of the tool. 
@@ -48,18 +48,17 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-	<mesh filename="package://iiwa_description/meshes/iiwa7_aruco/visual/tool.stl"/>
-	<!-- 	<cylinder length="0.1275" radius="0.020"/> -->
+        <!-- Replace with thin box to represent ArUco board -->
+        <!-- <box size="0.40 0.30 0.005"/> 40 cm x 30 cm x 5 mm -->
+        <mesh filename="package://hand_eye_calibration/assets/aruco_board.dae"/>
       </geometry>
-      <material name="Grey"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-	<mesh filename="package://iiwa_description/meshes/iiwa7_aruco/visual/tool.stl"/>
-	<!-- 	<cylinder length="0.1275" radius="0.020"/> -->
+        <!-- Thin box for collision representation -->
+        <box size="0.40 0.30 0.005"/>
       </geometry>
-      <material name="Grey"/>
     </collision>
   </link>
   
