@@ -32,7 +32,7 @@
   <!-- Tool properties -->
   <xacro:property name="tool_mass" value="0.200" />
   <xacro:property name="tool_joint_offset" value="0.00 0.00 0.10" />
-  <xacro:property name="tool_link_offset" value="0.00 0.00 0.1275" />
+  <xacro:property name="tool_link_offset" value="0.20 0.15 0.00" />
   
   <!--  Here we define a dummy joint between the tip of the iiwa7 and the base of the tool. 
   There is no offset between the two, that means the tool is attached at the robot flange. -->
@@ -66,7 +66,7 @@
   <joint name="tool_tip_joint" type="fixed">
     <parent link="tool_link" />
     <child link = "tool_link_ee" />
-    <origin xyz="${tool_link_offset}" rpy="0 0 0" />   
+    <origin xyz="${tool_link_offset}" rpy="0 0 ${pi}" />   
   </joint>
   
   <!--  The TCP frame is here defined -->
