@@ -96,6 +96,24 @@
     <origin xyz="0.8 0 1.0" rpy="${pi} ${pi} 0" />
   </joint>
 
+  <!-- generate an optical frame 
+      http://www.ros.org/reps/rep-0103.html#suffix-frames
+      so that ros and opencv can operate on the camera frame correctly 
+
+      see https://robotics.stackexchange.com/questions/73459/gazebo-camera-frame-is-inconsistent-with-rviz-opencv-convention
+      -->
+  <joint name="camera_optical_joint" type="fixed">
+    <!-- these values have to be these values otherwise the gazebo camera
+        image won't be aligned properly with the frame it is supposedly
+        originating from -->
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    <parent link="base_camera_link"/>
+    <child link="base_camera_link_optical"/>
+  </joint>
+
+  <link name="base_camera_link_optical">
+  </link>
+
   <gazebo reference="base_camera_link">
     <sensor type="camera" name="base_camera">
       <update_rate>10.0</update_rate>
@@ -122,7 +140,7 @@
         <cameraName>iiwa_base/camera</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-        <frameName>camera_link</frameName>
+        <frameName>base_camera_link_optical</frameName>
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
         <distortionK2>0.0</distortionK2>
